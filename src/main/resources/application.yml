@@ -1,0 +1,7 @@
+#配置程序端口，默认为8080
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+    context-path: /
