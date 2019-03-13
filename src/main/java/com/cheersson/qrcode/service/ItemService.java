@@ -1,4 +1,5 @@
 package com.cheersson.qrcode.service;
 
-public interface ItemService {
+public interface ItemService<T, Q> extends BaseService<T, Q> {
+
 }

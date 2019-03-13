@@ -9,11 +9,29 @@ public interface BaseService<T, Q> {
 
     boolean save(T t);
 
+    boolean saveSelective(T t);
+
     boolean update(T t);
+
+    boolean updateSelective(T t);
 
     boolean delete(Long id);
 
     List<T> list(Q query);
 
-    PageVO<T> pageList(Q query);
+    PageVO<T> pageList(Q query, int pageNum, int pageSize);
+
+    /**
+     * 根据条件更新，慎用
+     * @param example
+     * @return
+     */
+    int updateByExample(Q example);
+
+    /**
+     * 根据条件删除，慎用
+     * @param example
+     * @return
+     */
+    int deleteByExample(Q example);
 }

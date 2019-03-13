@@ -1,8 +1,6 @@
 package com.cheersson.qrcode.service;
 
-import com.cheersson.qrcode.model.Category;
 
-public interface CategoryService {
+public interface CategoryService<T, Q> extends BaseService<T, Q> {
 
-    Category get(Long id);
 }
