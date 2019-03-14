@@ -14,7 +14,6 @@ public class WebConfiguration {
         dispatcherServlet.setContextConfigLocation("classpath*:dispatcherServlet-servlet.xml");
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(dispatcherServlet);
         registrationBean.addUrlMappings("/");
-
         return registrationBean;
     }
 }

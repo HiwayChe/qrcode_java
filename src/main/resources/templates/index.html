@@ -1,15 +1,199 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>瑞玛二维码扫、条形码配置后台</title>
 
-    <title>Spring Framework Guru</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/iview@3.3.0/dist/styles/iview.css">
 
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+
 </head>
 <body>
+<div class="container-fluid" id="container">
+    <section class="h3">瑞玛二维码或条形码扫描校验 <div class="float-right" style="font-size: smaller"><a href="/logout">退出</a></div></section>
+    <div class="h4">校验大类维护作业</div>
+    <div class="h6">占位符说明：{customerItemCode}:客户料号； {yearWeekSeq}:年周序列号； {yearMonthDay}:年月日； {yearWeek}:年周</div>
+    <div class="row float-right" style="margin-right: 0.2rem;margin-bottom: 0.1rem">
+        <i-button type="success" @click="modal1 = true">新增分类</i-button>
+    </div>
+    <table class="table table-bordered row mx-0 table-striped table-borderless bg-light"
+           style="word-break: break-all;word-wrap: break-word;">
+        <thead class="w-100">
+        <tr class="row mx-0">
+            <th class="col-1">序号</th>
+            <th class="col-1">编码</th>
+            <th class="col-2">名称</th>
+            <th class="col-4">校验规则</th>
+            <th class="col-1">有效</th>
+            <th class="col-1">编辑分类</th>
+            <th class="col-1">删除分类</th>
+            <th class="col-1">基础资料</th>
+        </tr>
+        </thead>
+        <tbody class="w-100">
+        <tr class="row mx-0" v-for="category in categories">
+            <td class="col-1">{{category.id}}</td>
+            <td class="col-1">{{category.code}}</td>
+            <th class="col-2">{{category.name}}</th>
+            <td class="col-4">{{category.rule}}</td>
+            <td class="col-1">{{category.available?'是':'否'}}</td>
+            <td class="col-1">
+                <button class="btn btn-warning btn-sm" @click="editCategory(category)">编辑</button>
+            </td>
+            <td class="col-1">
+                <button class="btn btn-danger btn-sm" @click="deleteCategory(category.id)">删除</button>
+            </td>
+            <td class="col-1">
+                <a :href="'/item.html?cid=' + category.id">
+                    <button class="btn btn-outline-primary btn-sm">基础资料</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <template>
+        <Modal v-model="modal1"
+               title="新增/编辑分类"
+               :mask-closable="false"
+               @on-ok="saveCategory"
+               @on-cancel="cancelEditCategory"
+               width="50%">
+            <div class="container">
+                <div class="row" hidden>
+                    <div class="col-2 float-left">id</div>
+                    <div class="col-10 float-left"><input type="text" v-model="selectedCategory.id" class="col-12"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 float-left">编码</div>
+                    <div class="col-10 float-left"><input type="text" v-model="selectedCategory.code" class="col-12"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 2rem;">
+                    <div class="col-2 float-left">名称</div>
+                    <div class="col-10 float-left"><input type="text" v-model="selectedCategory.name" class="col-12"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 2rem;">
+                    <div class="col-2 float-left">校验规则</div>
+                    <div class="col-10 float-left"><input type="text" v-model="selectedCategory.rule" class="col-12"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 2rem;">
+                    <div class="col-2 float-left">是否有效</div>
+                    <div class="col-10 float-left">
+                        <select v-model="selectedCategory.available" class="col-2">
+                            <option value=1>有效</option>
+                            <option value=0>无效</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </Modal>
+    </template>
+
 </div>
 </body>
+<script src="https://cdn.bootcss.com/vue/2.6.6/vue.js" type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.6.6/vue.js"></script>
+<script src="https://cdn.bootcss.com/iview/3.2.2/iview.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var demo = new Vue({
+            el: '#container',
+            data() {
+                return {
+
+                    categories: [],
+                    selectedCategory: {'id': '', 'name': '', 'code': '', 'rule': '', 'available': true},
+                    dialogFormVisible: false,
+                    modal1: false
+                }
+
+            },
+            methods: {
+                listCategory: function () {
+                    axios.get('/category/list').then(res => {
+                        if (res.data.success) {
+                            this.categories = res.data.data;
+                        } else if (res.data.code === 401) {
+                            window.location.href = '/';
+                            return;
+                        }
+                    }).catch(err => {
+                        console.error(err);
+                        this.$Message.error("系统发生错误");
+                        this.categories = [];
+                    });
+                },
+                editCategory: function (category) {
+                    this.selectedCategory = category;
+                    this.modal1 = true;
+                },
+                deleteCategory: function (id) {
+                    this.$Modal.confirm({
+                        title: '确认要删除吗？',
+                        content: '删除分类会导致分类下面的基础资料也被删除，数据不可恢复，确认删除吗',
+                        loading: true,
+                        okText: '确定删除',
+                        onOk: () => {
+                            axios.get('/category/delete/' + id).then(res => {
+                                if (res.data.success) {
+                                    this.$Message.info("删除成功");
+                                    this.selectedCategory = {};
+                                    this.$Modal.remove();
+                                    this.listCategory();
+                                } else if (res.data.code === 401) {
+                                    window.location.href = '/';
+                                    return;
+                                } else {
+                                    this.$Message.error("删除失败");
+                                    this.selectedCategory = {};
+                                }
+                            }).catch(err => {
+                                this.$Message.error("删除失败");
+                                this.selectedCategory = {};
+                            })
+                        },
+                        cancelText: '先不删了',
+                        onCancel: () => {
+                        }
+                    });
+                },
+                saveCategory() {
+                    axios.post('/category/save', this.selectedCategory).then(res => {
+                        if (res.data.success) {
+                            this.$Message.info('保存成功');
+                            this.selectedCategory = {};
+                            this.listCategory();
+                        } else if (res.data.code === 401) {
+                            window.location.href = '/';
+                            return;
+                        } else {
+                            this.$Message.error('保存失败');
+                            this.selectedCategory = {};
+                        }
+
+                    }).catch(err => {
+                        this.$Message.error('保存失败');
+                        this.selectedCategory = {};
+                    });
+                },
+                cancelEditCategory() {
+                    this.selectedCategory = {};
+                    this.listCategory();
+                }
+            },
+            mounted: function () {
+                this.listCategory();
+            }
+        });
+
+    }
+</script>
 </html>
