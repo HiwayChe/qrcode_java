@@ -2,8 +2,9 @@ package com.cheersson.qrcode.mapper;
 
 import com.cheersson.qrcode.model.Item;
 import com.cheersson.qrcode.model.ItemExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ItemMapper {
     long countByExample(ItemExample example);

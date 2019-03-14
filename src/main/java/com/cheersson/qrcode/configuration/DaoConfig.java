@@ -1,10 +1,11 @@
-package com.cheersson.qrcode;
+package com.cheersson.qrcode.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
+@EnableAutoConfiguration
 public class DaoConfig {
     private static final Logger logger = LoggerFactory.getLogger(DaoConfig.class);
 

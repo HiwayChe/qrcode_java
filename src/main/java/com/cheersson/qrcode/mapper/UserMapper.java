@@ -3,8 +3,9 @@ package com.cheersson.qrcode.mapper;
 import com.cheersson.qrcode.model.User;
 import com.cheersson.qrcode.model.UserExample;
 import com.cheersson.qrcode.model.UserWithBLOBs;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     long countByExample(UserExample example);

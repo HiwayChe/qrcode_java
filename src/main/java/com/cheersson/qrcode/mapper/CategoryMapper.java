@@ -2,8 +2,9 @@ package com.cheersson.qrcode.mapper;
 
 import com.cheersson.qrcode.model.Category;
 import com.cheersson.qrcode.model.CategoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CategoryMapper {
     long countByExample(CategoryExample example);
