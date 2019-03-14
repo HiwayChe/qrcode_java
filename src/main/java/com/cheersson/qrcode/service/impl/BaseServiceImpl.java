@@ -4,9 +4,11 @@ import com.cheersson.qrcode.dao.BaseDao;
 import com.cheersson.qrcode.service.BaseService;
 import com.cheersson.qrcode.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public abstract class BaseServiceImpl<T, Q> implements BaseService<T, Q> {
 
     @Autowired

@@ -1,5 +1,6 @@
 package com.cheersson.qrcode.controlller;
 
+import com.cheersson.qrcode.model.CategoryExample;
 import com.cheersson.qrcode.model.Item;
 import com.cheersson.qrcode.model.ItemExample;
 import com.cheersson.qrcode.service.ItemService;
@@ -22,7 +23,7 @@ public class ItemController {
 
     @RequestMapping("/list")
     public ApiResult<List<Item>> list() {
-        return ApiResult.success(this.itemService.list(null));
+        return ApiResult.success(this.itemService.list(new ItemExample()));
     }
 
     @RequestMapping("/save")

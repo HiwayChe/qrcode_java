@@ -28,7 +28,7 @@ public class CategoryController {
 
     @RequestMapping("/list")
     public ApiResult<List<Category>> list() {
-        return ApiResult.success(this.categoryService.list(null));
+        return ApiResult.success(this.categoryService.list(new CategoryExample()));
     }
 
     @RequestMapping("/save")
