@@ -6,8 +6,9 @@ import com.cheersson.qrcode.vo.PageVO;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,22 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class BaseDao extends SqlSessionDaoSupport {
+public class BaseDao {
     private static final Logger logger = LoggerFactory.getLogger(BaseDao.class);
 
     private final String namespacePrefix = "com.cheersson.qrcode.mapper.";
 
+    private SqlSession sqlSession;
+
     @Autowired
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-        super.setSqlSessionFactory(sqlSessionFactory);
+        this.sqlSession = new SqlSessionTemplate(sqlSessionFactory);
     }
+
+    public SqlSession getSqlSession(){
+        return this.sqlSession;
+    }
+
 
     private Class getClassFromExampleName(String example) {
         if (StringUtils.endsWith(example, "Example")) {
