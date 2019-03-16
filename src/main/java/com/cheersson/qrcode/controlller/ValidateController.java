@@ -1,5 +1,6 @@
 package com.cheersson.qrcode.controlller;
 
+import com.cheersson.qrcode.util.CodeUtil;
 import com.cheersson.qrcode.vo.ApiResult;
 import com.cheersson.qrcode.vo.CodeVO;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +13,6 @@ public class ValidateController {
 
     @RequestMapping("/")
     public ApiResult<Boolean> validate(@RequestBody CodeVO codeVO){
-
         return null;
     }
 }

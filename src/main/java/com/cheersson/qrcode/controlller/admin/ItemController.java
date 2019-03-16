@@ -1,6 +1,5 @@
-package com.cheersson.qrcode.controlller;
+package com.cheersson.qrcode.controlller.admin;
 
-import com.cheersson.qrcode.model.CategoryExample;
 import com.cheersson.qrcode.model.Item;
 import com.cheersson.qrcode.model.ItemExample;
 import com.cheersson.qrcode.service.ItemService;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/item")
+@RequestMapping("/admin/item")
 public class ItemController {
     @Autowired
     private ItemService<Item, ItemExample> itemService;

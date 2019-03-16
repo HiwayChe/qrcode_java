@@ -1,4 +1,4 @@
-package com.cheersson.qrcode.controlller;
+package com.cheersson.qrcode.controlller.admin;
 
 import com.cheersson.qrcode.model.Category;
 import com.cheersson.qrcode.model.CategoryExample;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 public class CategoryController {
 
     @Autowired
