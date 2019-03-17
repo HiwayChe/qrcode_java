@@ -14,6 +14,10 @@ import java.util.Date;
  */
 public class DateUtil {
     private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
+
+    public static final String YYYY_MM_DD = "yyyy-MM-dd";
+    public static final String YYYYMMDD = "yyyyMMdd";
+
     /**
      * 返回年周
      * @param date

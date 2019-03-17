@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapUtils {
-    public static Map<String, Object> newMap(Object... args) {
+    public static Map<String, ?> newMap(Object... args) {
         if (args.length == 0) {
             return Collections.emptyMap();
         }
@@ -18,4 +18,6 @@ public class MapUtils {
         }
         return map;
     }
+
+
 }

@@ -4,6 +4,7 @@ import com.cheersson.qrcode.exception.BizException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Collection;
 
@@ -49,13 +50,18 @@ public class AssertUtil {
         }
     }
 
-    public static void isTrue(boolean value, String msg, Object... args){
-        if(!value){
+    public static void isTrue(boolean value, String msg, Object... args) {
+        if (!value) {
             throw new BizException(StringUtils.isBlank(msg) ? "条件不成立" : MessageUtil.getMessage(msg, args));
         }
     }
 
-    public static void isTrue(boolean value){
+    public static void isTrue(boolean value) {
         isTrue(value, null);
     }
+
+    public static void isEqual(Object object, Object object2) {
+        ObjectUtils.nullSafeEquals(object, object2);
+    }
+
 }

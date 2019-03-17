@@ -1,5 +1,7 @@
 package com.cheersson.qrcode.exception;
 
+import com.cheersson.qrcode.util.MessageUtil;
+
 public class BizException extends RuntimeException{
     public BizException() {
         super();
@@ -15,5 +17,9 @@ public class BizException extends RuntimeException{
 
     public BizException(Throwable cause) {
         super(cause);
+    }
+
+    public BizException(String code, Object... args){
+        super(MessageUtil.getMessage(code, args));
     }
 }
