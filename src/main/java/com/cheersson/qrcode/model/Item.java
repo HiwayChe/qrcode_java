@@ -3,15 +3,15 @@ package com.cheersson.qrcode.model;
 public class Item extends BaseModel {
     private Long id;
 
-    private Long categoryid;
+    private Long categoryId;
 
     private Long code;
 
     private Long name;
 
-    private Long customercode;
+    private Long customerCode;
 
-    private Long customername;
+    private Long customerName;
 
     private Integer version;
 
@@ -27,12 +27,12 @@ public class Item extends BaseModel {
         this.id = id;
     }
 
-    public Long getCategoryid() {
-        return categoryid;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryid(Long categoryid) {
-        this.categoryid = categoryid;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getCode() {
@@ -51,20 +51,20 @@ public class Item extends BaseModel {
         this.name = name;
     }
 
-    public Long getCustomercode() {
-        return customercode;
+    public Long getCustomerCode() {
+        return customerCode;
     }
 
-    public void setCustomercode(Long customercode) {
-        this.customercode = customercode;
+    public void setCustomerCode(Long customerCode) {
+        this.customerCode = customerCode;
     }
 
-    public Long getCustomername() {
-        return customername;
+    public Long getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomername(Long customername) {
-        this.customername = customername;
+    public void setCustomerName(Long customerName) {
+        this.customerName = customerName;
     }
 
     public Integer getVersion() {

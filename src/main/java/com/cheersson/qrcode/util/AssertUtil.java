@@ -61,7 +61,36 @@ public class AssertUtil {
     }
 
     public static void isEqual(Object object, Object object2) {
-        ObjectUtils.nullSafeEquals(object, object2);
+        isEqual(object, object2, "2个值不相等");
+    }
+
+    public static void isEqual(Object object, Object object2, String msg, Object... args){
+        if(!ObjectUtils.nullSafeEquals(object, object2)){
+            throw new BizException(MessageUtil.getMessage(msg, args));
+        }
+    }
+
+    public static void contentEquals(String content, String content2, boolean ci){
+        contentEquals(content, content2, ci);
+    }
+
+    /**
+     *
+     * @param content
+     * @param content2
+     * @param ci  caseInsensitive
+     * @param msg
+     * @param args
+     */
+    public static void contentEquals(String content, String content2, boolean ci, String msg, Object... args){
+        if(ci && StringUtils.equalsIgnoreCase(content, content2)){
+
+        }else if(!ci && StringUtils.equals(content, content2)){
+
+        }else{
+            throw new BizException(MessageUtil.getMessage(msg, args));
+        }
+
     }
 
 }

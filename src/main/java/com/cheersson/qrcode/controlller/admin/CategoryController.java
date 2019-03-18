@@ -44,7 +44,7 @@ public class CategoryController {
     @RequestMapping("/delete/{id}")
     public ApiResult<Boolean> delete(@PathVariable("id") Long id) {
         ItemExample itemExample = new ItemExample();
-        itemExample.createCriteria().andCategoryidEqualTo(id);
+        itemExample.createCriteria().andCategoryIdEqualTo(id);
         this.itemService.deleteByExample(itemExample);
         return ApiResult.success(this.categoryService.delete(id));
     }

@@ -37,20 +37,20 @@
 		</javaClientGenerator>
 
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-		<table tableName="user" domainObjectName="User" enableUpdateByExample="true" enableDeleteByExample="true" selectByExampleQueryId="true" >
-			<property name="rootClass" value="com.cheersson.qrcode.model.BaseModel"/>
+		<table tableName="t_user" domainObjectName="User" enableUpdateByExample="true" enableDeleteByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="true"/>
+            <property name="rootClass" value="com.cheersson.qrcode.model.BaseModel"/>
 			<generatedKey column="id" sqlStatement="MySql" type="post" identity="true"/>
-			<property name="useActualColumnNames" value="true"/>
 		</table>
-		<table tableName="category" domainObjectName="Category" enableUpdateByExample="true" enableDeleteByExample="true" selectByExampleQueryId="true">
-			<property name="rootClass" value="com.cheersson.qrcode.model.BaseModel"/>
+		<table tableName="t_category" domainObjectName="Category" enableUpdateByExample="true" enableDeleteByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="true"/>
+            <property name="rootClass" value="com.cheersson.qrcode.model.BaseModel"/>
 			<generatedKey column="id" sqlStatement="MySql" type="post" identity="true"/>
-			<property name="useActualColumnNames" value="true"/>
 		</table>
-		<table tableName="item" domainObjectName="Item" enableUpdateByExample="true" enableDeleteByExample="true" selectByExampleQueryId="true">
+		<table tableName="t_item" domainObjectName="Item" enableUpdateByExample="true" enableDeleteByExample="true" selectByExampleQueryId="true">
+			<property name="useActualColumnNames" value="true"/>
 			<property name="rootClass" value="com.cheersson.qrcode.model.BaseModel"/>
 			<generatedKey column="id" sqlStatement="MySql" type="post" identity="true"/>
-			<property name="useActualColumnNames" value="true"/>
 		</table>
 	</context>
 </generatorConfiguration>

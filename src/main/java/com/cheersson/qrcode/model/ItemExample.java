@@ -164,63 +164,63 @@ public class ItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidIsNull() {
+        public Criteria andCategoryIdIsNull() {
             addCriterion("categoryId is null");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidIsNotNull() {
+        public Criteria andCategoryIdIsNotNull() {
             addCriterion("categoryId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidEqualTo(Long value) {
-            addCriterion("categoryId =", value, "categoryid");
+        public Criteria andCategoryIdEqualTo(Long value) {
+            addCriterion("categoryId =", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidNotEqualTo(Long value) {
-            addCriterion("categoryId <>", value, "categoryid");
+        public Criteria andCategoryIdNotEqualTo(Long value) {
+            addCriterion("categoryId <>", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidGreaterThan(Long value) {
-            addCriterion("categoryId >", value, "categoryid");
+        public Criteria andCategoryIdGreaterThan(Long value) {
+            addCriterion("categoryId >", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidGreaterThanOrEqualTo(Long value) {
-            addCriterion("categoryId >=", value, "categoryid");
+        public Criteria andCategoryIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("categoryId >=", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidLessThan(Long value) {
-            addCriterion("categoryId <", value, "categoryid");
+        public Criteria andCategoryIdLessThan(Long value) {
+            addCriterion("categoryId <", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidLessThanOrEqualTo(Long value) {
-            addCriterion("categoryId <=", value, "categoryid");
+        public Criteria andCategoryIdLessThanOrEqualTo(Long value) {
+            addCriterion("categoryId <=", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidIn(List<Long> values) {
-            addCriterion("categoryId in", values, "categoryid");
+        public Criteria andCategoryIdIn(List<Long> values) {
+            addCriterion("categoryId in", values, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidNotIn(List<Long> values) {
-            addCriterion("categoryId not in", values, "categoryid");
+        public Criteria andCategoryIdNotIn(List<Long> values) {
+            addCriterion("categoryId not in", values, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidBetween(Long value1, Long value2) {
-            addCriterion("categoryId between", value1, value2, "categoryid");
+        public Criteria andCategoryIdBetween(Long value1, Long value2) {
+            addCriterion("categoryId between", value1, value2, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryidNotBetween(Long value1, Long value2) {
-            addCriterion("categoryId not between", value1, value2, "categoryid");
+        public Criteria andCategoryIdNotBetween(Long value1, Long value2) {
+            addCriterion("categoryId not between", value1, value2, "categoryId");
             return (Criteria) this;
         }
 
@@ -344,123 +344,123 @@ public class ItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeIsNull() {
+        public Criteria andCustomerCodeIsNull() {
             addCriterion("customerCode is null");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeIsNotNull() {
+        public Criteria andCustomerCodeIsNotNull() {
             addCriterion("customerCode is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeEqualTo(Long value) {
-            addCriterion("customerCode =", value, "customercode");
+        public Criteria andCustomerCodeEqualTo(Long value) {
+            addCriterion("customerCode =", value, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeNotEqualTo(Long value) {
-            addCriterion("customerCode <>", value, "customercode");
+        public Criteria andCustomerCodeNotEqualTo(Long value) {
+            addCriterion("customerCode <>", value, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeGreaterThan(Long value) {
-            addCriterion("customerCode >", value, "customercode");
+        public Criteria andCustomerCodeGreaterThan(Long value) {
+            addCriterion("customerCode >", value, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeGreaterThanOrEqualTo(Long value) {
-            addCriterion("customerCode >=", value, "customercode");
+        public Criteria andCustomerCodeGreaterThanOrEqualTo(Long value) {
+            addCriterion("customerCode >=", value, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeLessThan(Long value) {
-            addCriterion("customerCode <", value, "customercode");
+        public Criteria andCustomerCodeLessThan(Long value) {
+            addCriterion("customerCode <", value, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeLessThanOrEqualTo(Long value) {
-            addCriterion("customerCode <=", value, "customercode");
+        public Criteria andCustomerCodeLessThanOrEqualTo(Long value) {
+            addCriterion("customerCode <=", value, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeIn(List<Long> values) {
-            addCriterion("customerCode in", values, "customercode");
+        public Criteria andCustomerCodeIn(List<Long> values) {
+            addCriterion("customerCode in", values, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeNotIn(List<Long> values) {
-            addCriterion("customerCode not in", values, "customercode");
+        public Criteria andCustomerCodeNotIn(List<Long> values) {
+            addCriterion("customerCode not in", values, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeBetween(Long value1, Long value2) {
-            addCriterion("customerCode between", value1, value2, "customercode");
+        public Criteria andCustomerCodeBetween(Long value1, Long value2) {
+            addCriterion("customerCode between", value1, value2, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomercodeNotBetween(Long value1, Long value2) {
-            addCriterion("customerCode not between", value1, value2, "customercode");
+        public Criteria andCustomerCodeNotBetween(Long value1, Long value2) {
+            addCriterion("customerCode not between", value1, value2, "customerCode");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameIsNull() {
+        public Criteria andCustomerNameIsNull() {
             addCriterion("customerName is null");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameIsNotNull() {
+        public Criteria andCustomerNameIsNotNull() {
             addCriterion("customerName is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameEqualTo(Long value) {
-            addCriterion("customerName =", value, "customername");
+        public Criteria andCustomerNameEqualTo(Long value) {
+            addCriterion("customerName =", value, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameNotEqualTo(Long value) {
-            addCriterion("customerName <>", value, "customername");
+        public Criteria andCustomerNameNotEqualTo(Long value) {
+            addCriterion("customerName <>", value, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameGreaterThan(Long value) {
-            addCriterion("customerName >", value, "customername");
+        public Criteria andCustomerNameGreaterThan(Long value) {
+            addCriterion("customerName >", value, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameGreaterThanOrEqualTo(Long value) {
-            addCriterion("customerName >=", value, "customername");
+        public Criteria andCustomerNameGreaterThanOrEqualTo(Long value) {
+            addCriterion("customerName >=", value, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameLessThan(Long value) {
-            addCriterion("customerName <", value, "customername");
+        public Criteria andCustomerNameLessThan(Long value) {
+            addCriterion("customerName <", value, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameLessThanOrEqualTo(Long value) {
-            addCriterion("customerName <=", value, "customername");
+        public Criteria andCustomerNameLessThanOrEqualTo(Long value) {
+            addCriterion("customerName <=", value, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameIn(List<Long> values) {
-            addCriterion("customerName in", values, "customername");
+        public Criteria andCustomerNameIn(List<Long> values) {
+            addCriterion("customerName in", values, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameNotIn(List<Long> values) {
-            addCriterion("customerName not in", values, "customername");
+        public Criteria andCustomerNameNotIn(List<Long> values) {
+            addCriterion("customerName not in", values, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameBetween(Long value1, Long value2) {
-            addCriterion("customerName between", value1, value2, "customername");
+        public Criteria andCustomerNameBetween(Long value1, Long value2) {
+            addCriterion("customerName between", value1, value2, "customerName");
             return (Criteria) this;
         }
 
-        public Criteria andCustomernameNotBetween(Long value1, Long value2) {
-            addCriterion("customerName not between", value1, value2, "customername");
+        public Criteria andCustomerNameNotBetween(Long value1, Long value2) {
+            addCriterion("customerName not between", value1, value2, "customerName");
             return (Criteria) this;
         }
 
