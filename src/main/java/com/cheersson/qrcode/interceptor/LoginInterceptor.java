@@ -13,6 +13,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if(WebUtil.hasLoggedIn() || WebUtil.isLoginRequest()){
             return true;
         }
-        throw new LoginException("请先登录");
+        response.sendRedirect("/admin/login");
+        return false;
     }
 }
