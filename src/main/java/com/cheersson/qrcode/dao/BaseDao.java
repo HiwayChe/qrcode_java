@@ -5,6 +5,7 @@ import com.cheersson.qrcode.vo.PageVO;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,18 +29,18 @@ public class BaseDao {
         this.sqlSession = new SqlSessionTemplate(sqlSessionFactory);
     }
 
-    public SqlSession getSqlSession(){
+    public SqlSession getSqlSession() {
         return this.sqlSession;
     }
 
 
     private String getModelMapperName(String clsName) {
-        if(clsName.contains(".")){
+        if (clsName.contains(".")) {
             clsName = clsName.substring(clsName.lastIndexOf(".") + 1);
         }
         if (StringUtils.endsWith(clsName, "Example")) {
             return namespacePrefix + clsName.substring(0, clsName.length() - 7) + "Mapper";
-        }else{
+        } else {
             return namespacePrefix + clsName + "Mapper";
         }
     }
@@ -102,5 +103,16 @@ public class BaseDao {
     public <E> int deleteByExample(E example) {
         AssertUtil.notNull(example);
         return this.getSqlSession().delete(this.getModelMapperName(example.getClass().getSimpleName()) + ".deleteByExample", example);
+    }
+
+    public <T, E> T one(E example) {
+        AssertUtil.notNull(example);
+        return this.getSqlSession().selectOne(this.getModelMapperName(example.getClass().getSimpleName()) + ".selectByExample", example);
+    }
+
+    public <T, E> List<T> list(E example, int top){
+        AssertUtil.notNull(example);
+        AssertUtil.isTrue(top > 0);
+        return this.getSqlSession().selectList(this.getModelMapperName(example.getClass().getSimpleName()) + ".selectByExample", example, new RowBounds(0, top));
     }
 }

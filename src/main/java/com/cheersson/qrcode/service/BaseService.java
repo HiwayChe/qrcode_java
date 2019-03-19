@@ -2,6 +2,7 @@ package com.cheersson.qrcode.service;
 
 import com.cheersson.qrcode.vo.PageVO;
 
+import javax.management.Query;
 import java.util.List;
 
 public interface BaseService<T, Q> {
@@ -18,6 +19,15 @@ public interface BaseService<T, Q> {
     boolean delete(Long id);
 
     List<T> list(Q query);
+
+    /**
+     * 只取一条，多于一条会报错
+     * @param query
+     * @return
+     */
+    T one(Q query);
+
+    List<T> list(Q query, int top);
 
     PageVO<T> pageList(Q query, int pageNum, int pageSize);
 

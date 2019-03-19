@@ -52,6 +52,16 @@ public abstract class BaseServiceImpl<T, Q> implements BaseService<T, Q> {
     }
 
     @Override
+    public T one(Q query) {
+        return this.baseDao.one(query);
+    }
+
+    @Override
+    public List<T> list(Q query, int top) {
+        return this.baseDao.list(query, top);
+    }
+
+    @Override
     public PageVO<T> pageList(Q query, int pageNum, int pageSize) {
         return this.baseDao.selectByExample(query, pageNum, pageSize);
     }

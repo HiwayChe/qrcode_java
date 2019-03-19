@@ -61,12 +61,6 @@ public class DaoConfig {
     @Value("${spring.datasource.testOnReturn}")
     private boolean testOnReturn;
 
-    @Value("${spring.datasource.filters}")
-    private String filters;
-
-    @Value("${spring.datasource.logSlowSql}")
-    private String logSlowSql;
-
     @Bean
     public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
@@ -84,11 +78,6 @@ public class DaoConfig {
         datasource.setTestWhileIdle(testWhileIdle);
         datasource.setTestOnBorrow(testOnBorrow);
         datasource.setTestOnReturn(testOnReturn);
-        try {
-            datasource.setFilters(filters);
-        } catch (SQLException e) {
-            logger.error("druid configuration initialization filter", e);
-        }
         return datasource;
     }
 
@@ -97,17 +86,10 @@ public class DaoConfig {
     public SqlSessionFactoryBean sqlSessionFactory() {
         SqlSessionFactoryBean sqlSessionFactoryBean = null;
         try {
-            // 实例SessionFactory
             sqlSessionFactoryBean = new SqlSessionFactoryBean();
-            // 配置数据源
             sqlSessionFactoryBean.setDataSource(dataSource());
-
-            // 加载MyBatis配置文件
             PathMatchingResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-            // 能加载多个，所以可以配置通配符(如：classpath*:mapper/**/*.xml)
             sqlSessionFactoryBean.setMapperLocations(resourcePatternResolver.getResources("classpath*:com/cheersson/qrcode/model/*.xml"));
-            // 配置mybatis的config文件(我目前用不上)
-            // sqlSessionFactoryBean.setConfigLocation("mybatis-config.xml");
         } catch (Exception e) {
             logger.error("创建SqlSession连接工厂错误：{}", e);
         }
