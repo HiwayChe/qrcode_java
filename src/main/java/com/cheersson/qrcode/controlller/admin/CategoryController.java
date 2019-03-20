@@ -21,8 +21,8 @@ public class CategoryController {
     @Autowired
     private ItemService<Item, ItemExample> itemService;
 
-    @RequestMapping("/{id}")
-    public ApiResult<Category> get(@PathVariable("id") @RequestParam(required = true) Long id) {
+    @RequestMapping("/get")
+    public ApiResult<Category> get( @RequestParam(required = true) Long id) {
         return ApiResult.success(this.categoryService.get(id));
     }
 
@@ -41,8 +41,8 @@ public class CategoryController {
         return ApiResult.success(category);
     }
 
-    @RequestMapping("/delete/{id}")
-    public ApiResult<Boolean> delete(@PathVariable("id") Long id) {
+    @RequestMapping("/delete")
+    public ApiResult<Boolean> delete(@RequestParam("id") Long id) {
         ItemExample itemExample = new ItemExample();
         itemExample.createCriteria().andCategoryIdEqualTo(id);
         this.itemService.deleteByExample(itemExample);

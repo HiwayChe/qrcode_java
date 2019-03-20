@@ -5,13 +5,13 @@ public class Item extends BaseModel {
 
     private Long categoryId;
 
-    private Long code;
+    private String code;
 
-    private Long name;
+    private String name;
 
-    private Long customerCode;
+    private String customerCode;
 
-    private Long customerName;
+    private String customerName;
 
     private Integer version;
 
@@ -35,36 +35,36 @@ public class Item extends BaseModel {
         this.categoryId = categoryId;
     }
 
-    public Long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Long code) {
-        this.code = code;
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public Long getCustomerCode() {
+    public String getCustomerCode() {
         return customerCode;
     }
 
-    public void setCustomerCode(Long customerCode) {
-        this.customerCode = customerCode;
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode == null ? null : customerCode.trim();
     }
 
-    public Long getCustomerName() {
+    public String getCustomerName() {
         return customerName;
     }
 
-    public void setCustomerName(Long customerName) {
-        this.customerName = customerName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName == null ? null : customerName.trim();
     }
 
     public Integer getVersion() {

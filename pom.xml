@@ -121,6 +121,12 @@
                     <include>**/*.tld</include>
                     <include>**/*.html</include>
                     <include>**/*.txt</include>
+                    <include>**/*.js</include>
+                    <include>**/*.css</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.jpeg</include>
+                    <include>**/*.gif</include>
+                    <include>**/*.png</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

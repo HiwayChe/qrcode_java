@@ -9,11 +9,16 @@
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/iview@3.3.0/dist/styles/iview.css">
 
-
+    <style>
+        input{
+            padding-left:2px;
+            padding-right:2px;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid" id="container">
-    <section class="h3">瑞玛二维码或条形码扫描校验 <div class="float-right" style="font-size: smaller"><a href="/logout">退出</a></div></section>
+    <section class="h3">瑞玛二维码或条形码扫描校验 <div class="float-right" style="font-size: smaller"><i-button type="primary" @click="logout()">退出</i-button></div></section>
     <div class="h4">校验大类维护作业</div>
     <div class="h6">占位符说明：{customerItemCode}:客户料号； {yearWeekSeq}:年周序列号； {yearMonthDay}:年月日； {yearWeek}:年周</div>
     <div class="row float-right" style="margin-right: 0.2rem;margin-bottom: 0.1rem">
@@ -47,7 +52,7 @@
                 <button class="btn btn-danger btn-sm" @click="deleteCategory(category.id)">删除</button>
             </td>
             <td class="col-1">
-                <a :href="'/item.html?cid=' + category.id">
+                <a :href="'/admin/item/index?cid=' + category.id">
                     <button class="btn btn-outline-primary btn-sm">基础资料</button>
                 </a>
             </td>
@@ -86,9 +91,9 @@
                 <div class="row" style="margin-top: 2rem;">
                     <div class="col-2 float-left">是否有效</div>
                     <div class="col-10 float-left">
-                        <select v-model="selectedCategory.available" class="col-2">
-                            <option value=1>有效</option>
-                            <option value=0>无效</option>
+                        <select v-model="selectedCategory.available" class="col-2" style="height:1.5rem">
+                            <option value="true">有效</option>
+                            <option value="false">无效</option>
                         </select>
                     </div>
                 </div>
@@ -118,7 +123,7 @@
             },
             methods: {
                 listCategory: function () {
-                    axios.get('/category/list').then(res => {
+                    axios.get('/admin/category/list').then(res => {
                         if (res.data.success) {
                             this.categories = res.data.data;
                         } else if (res.data.code === 401) {
@@ -142,7 +147,7 @@
                         loading: true,
                         okText: '确定删除',
                         onOk: () => {
-                            axios.get('/category/delete/' + id).then(res => {
+                            axios.get('/admin/category/delete?id=' + id).then(res => {
                                 if (res.data.success) {
                                     this.$Message.info("删除成功");
                                     this.selectedCategory = {};
@@ -165,8 +170,8 @@
                         }
                     });
                 },
-                saveCategory() {
-                    axios.post('/category/save', this.selectedCategory).then(res => {
+                saveCategory: function() {
+                    axios.post('/admin/category/save', this.selectedCategory).then(res => {
                         if (res.data.success) {
                             this.$Message.info('保存成功');
                             this.selectedCategory = {};
@@ -184,9 +189,12 @@
                         this.selectedCategory = {};
                     });
                 },
-                cancelEditCategory() {
+                cancelEditCategory: function() {
                     this.selectedCategory = {};
                     this.listCategory();
+                },
+                logout:function(){
+                    window.location.href = "/admin/logout";
                 }
             },
             mounted: function () {

@@ -20,7 +20,7 @@ public class CodeUtil {
     public static final String rightPlaceholderSign = "}";
 
     public static final String yearWeek = "yearWeek";
-    public static final String customerItemCode = "customerItemCode";
+    public static final String customerCode = "customerCode";
     public static final String yearMonthDay = "yearMonthDay";
     public static final String yearWeekSeq = "yearWeekSeq";
 
@@ -99,7 +99,7 @@ public class CodeUtil {
                 AssertUtil.isTrue(entry.getValue().length() > 4, "年周序列号{}长度要大于4", entry.getValue());
                 validateYearWeek(placeholderMap.get(yearMonthDay), entry.getValue().substring(0, 4));
                 validateSeq(entry.getValue().substring(4));
-            } else if (entry.getKey().equals(customerItemCode)) {
+            } else if (entry.getKey().equals(customerCode)) {
                 //从数据库中查记录
                 String customerItemCode = entry.getValue();
                 ItemExample itemExample = new ItemExample();

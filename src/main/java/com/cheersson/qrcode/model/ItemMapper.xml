@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.cheersson.qrcode.model.Item">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
-    <result column="code" jdbcType="BIGINT" property="code" />
-    <result column="name" jdbcType="BIGINT" property="name" />
-    <result column="customerCode" jdbcType="BIGINT" property="customerCode" />
-    <result column="customerName" jdbcType="BIGINT" property="customerName" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="customerCode" jdbcType="VARCHAR" property="customerCode" />
+    <result column="customerName" jdbcType="VARCHAR" property="customerName" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="available" jdbcType="BIT" property="available" />
@@ -111,8 +111,8 @@
     insert into t_item (categoryId, code, name, 
       customerCode, customerName, version, 
       remark, available)
-    values (#{categoryId,jdbcType=BIGINT}, #{code,jdbcType=BIGINT}, #{name,jdbcType=BIGINT}, 
-      #{customerCode,jdbcType=BIGINT}, #{customerName,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, 
+    values (#{categoryId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{customerCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{available,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cheersson.qrcode.model.Item">
@@ -151,16 +151,16 @@
         #{categoryId,jdbcType=BIGINT},
       </if>
       <if test="code != null">
-        #{code,jdbcType=BIGINT},
+        #{code,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
-        #{name,jdbcType=BIGINT},
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="customerCode != null">
-        #{customerCode,jdbcType=BIGINT},
+        #{customerCode,jdbcType=VARCHAR},
       </if>
       <if test="customerName != null">
-        #{customerName,jdbcType=BIGINT},
+        #{customerName,jdbcType=VARCHAR},
       </if>
       <if test="version != null">
         #{version,jdbcType=INTEGER},
@@ -189,16 +189,16 @@
         categoryId = #{record.categoryId,jdbcType=BIGINT},
       </if>
       <if test="record.code != null">
-        code = #{record.code,jdbcType=BIGINT},
+        code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
-        name = #{record.name,jdbcType=BIGINT},
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.customerCode != null">
-        customerCode = #{record.customerCode,jdbcType=BIGINT},
+        customerCode = #{record.customerCode,jdbcType=VARCHAR},
       </if>
       <if test="record.customerName != null">
-        customerName = #{record.customerName,jdbcType=BIGINT},
+        customerName = #{record.customerName,jdbcType=VARCHAR},
       </if>
       <if test="record.version != null">
         version = #{record.version,jdbcType=INTEGER},
@@ -218,10 +218,10 @@
     update t_item
     set id = #{record.id,jdbcType=BIGINT},
       categoryId = #{record.categoryId,jdbcType=BIGINT},
-      code = #{record.code,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=BIGINT},
-      customerCode = #{record.customerCode,jdbcType=BIGINT},
-      customerName = #{record.customerName,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      customerCode = #{record.customerCode,jdbcType=VARCHAR},
+      customerName = #{record.customerName,jdbcType=VARCHAR},
       version = #{record.version,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       available = #{record.available,jdbcType=BIT}
@@ -236,16 +236,16 @@
         categoryId = #{categoryId,jdbcType=BIGINT},
       </if>
       <if test="code != null">
-        code = #{code,jdbcType=BIGINT},
+        code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=BIGINT},
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="customerCode != null">
-        customerCode = #{customerCode,jdbcType=BIGINT},
+        customerCode = #{customerCode,jdbcType=VARCHAR},
       </if>
       <if test="customerName != null">
-        customerName = #{customerName,jdbcType=BIGINT},
+        customerName = #{customerName,jdbcType=VARCHAR},
       </if>
       <if test="version != null">
         version = #{version,jdbcType=INTEGER},
@@ -262,10 +262,10 @@
   <update id="updateByPrimaryKey" parameterType="com.cheersson.qrcode.model.Item">
     update t_item
     set categoryId = #{categoryId,jdbcType=BIGINT},
-      code = #{code,jdbcType=BIGINT},
-      name = #{name,jdbcType=BIGINT},
-      customerCode = #{customerCode,jdbcType=BIGINT},
-      customerName = #{customerName,jdbcType=BIGINT},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      customerCode = #{customerCode,jdbcType=VARCHAR},
+      customerName = #{customerName,jdbcType=VARCHAR},
       version = #{version,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       available = #{available,jdbcType=BIT}

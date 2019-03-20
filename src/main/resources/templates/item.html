@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container-fluid" id="container">
-    <section class="h3">瑞玛二维码扫、条形码基础资料维护<div class="float-right" style="font-size: smaller"><a href="/logout">退出</a></div></section>
+    <section class="h3">瑞玛二维码扫、条形码基础资料维护<div class="float-right" style="font-size: smaller"><i-button type="primary" @click="logout()">退出</i-button></div></section>
     <div class="h4">基础资料维护作业，分类:<span class="text-primary">{{category.name}}</span></div>
     <div class="row float-right" style="margin-right: 0.2rem;margin-bottom: 0.1rem;">
         <button class="btn btn-sm btn-primary" @click="returnBack()">返回分类列表</button>
@@ -37,10 +37,10 @@
         <tbody class="w-100">
         <tr class="row mx-0" v-for="item in items">
             <td class="col-1">{{item.id}}</td>
-            <td class="col-1">{{item.cheerssonCode}}</td>
+            <td class="col-1">{{item.code}}</td>
             <th class="col-2">{{item.name}}</th>
-            <td class="col-1">{{item.customerItemCode}}</td>
-            <td class="col-2">{{item.customerItemName}}</td>
+            <td class="col-1">{{item.customerCode}}</td>
+            <td class="col-2">{{item.customerName}}</td>
             <td class="col-1">{{item.version}}</td>
             <td class="col-1">{{item.remark}}</td>
             <td class="col-1">{{item.available?'是':'否'}}</td>
@@ -75,8 +75,7 @@
                 </div>
                 <div class="row">
                     <div class="col-2 float-left">瑞玛料号</div>
-                    <div class="col-10 float-left"><input type="text" v-model="selectedItem.cheerssonCode"
-                                                          class="col-12"/>
+                    <div class="col-10 float-left"><input type="text" v-model="selectedItem.code" class="col-12"/>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 2rem;">
@@ -86,19 +85,19 @@
                 </div>
                 <div class="row" style="margin-top: 2rem;">
                     <div class="col-2 float-left">客户料号</div>
-                    <div class="col-10 float-left"><input type="text" v-model="selectedItem.customerItemCode" class="col-12"/>
+                    <div class="col-10 float-left"><input type="text" v-model="selectedItem.customerCode" class="col-12"/>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 2rem;">
                     <div class="col-2 float-left">客户料件名称</div>
                     <div class="col-10 float-left">
-                        <input type="text" v-model="selectedItem.customerItemName" class="col-12"/>
+                        <input type="text" v-model="selectedItem.customerName" class="col-12"/>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 2rem;">
                     <div class="col-2 float-left">版本号</div>
                     <div class="col-10 float-left">
-                        <input type="text" v-model="selectedItem.version" class="col-12"/>
+                        <input type="number" v-model="selectedItem.version" class="col-12"/>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 2rem;">
@@ -110,9 +109,9 @@
                 <div class="row" style="margin-top: 2rem;">
                     <div class="col-2 float-left">是否有效</div>
                     <div class="col-10 float-left">
-                        <select v-model="selectedItem.available" class="col-2">
-                            <option value=1>有效</option>
-                            <option value=0>无效</option>
+                        <select v-model="selectedItem.available" class="col-2" style="height:1.5rem">
+                            <option value="true">有效</option>
+                            <option value="false">无效</option>
                         </select>
                     </div>
                 </div>
@@ -125,13 +124,13 @@
 <script src="https://cdn.bootcss.com/axios/0.18.0/axios.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.6.6/vue.js"></script>
 <script src="https://cdn.bootcss.com/iview/3.2.2/iview.js"></script>
-<script src="js/util.js" type="text/javascript"></script>
+<script src="/static/js/util.js" type="text/javascript"></script>
 <script type="text/javascript">
     window.onload = function () {
         const cid = getQueryParam()['cid'];
         if (!cid) {
             alert("分类id不能为空");
-            window.location.href = '/';
+            window.location.href = '/admin';
             return;
         }
         var demo = new Vue({
@@ -145,7 +144,7 @@
             },
             methods: {
                 listItem: function () {
-                    axios.get('/item/list/' + cid).then(res => {
+                    axios.get('/admin/item/list?cid=' + cid).then(res => {
                         if (res.data.success) {
                             this.items = res.data.data;
                         } else if (res.data.code === 401) {
@@ -164,7 +163,7 @@
                         return;
                     }
                     this.selectedItem['categoryId'] = cid;
-                    axios.post('/item/save', this.selectedItem).then(res => {
+                    axios.post('/admin/item/save', this.selectedItem).then(res => {
                         if (res.data.success) {
                             this.$Message.info('保存成功');
                             this.selectedItem = {};
@@ -189,7 +188,7 @@
                         loading: true,
                         okText: '确定删除',
                         onOk: () => {
-                            axios.get('/item/delete/' + id).then(res => {
+                            axios.get('/admin/item/delete?id=' + id).then(res => {
                                 if (res.data.success) {
                                     this.$Message.info("删除成功");
                                     this.selectedItem = {};
@@ -221,7 +220,7 @@
                     this.listItem();
                 },
                 getCategory: function () {
-                    axios.get('/category/get/' + cid).then(res => {
+                    axios.get('/admin/category/get?id=' + cid).then(res => {
                         if (res.data.success) {
                             this.category = res.data.data;
                         } else if (res.data.code === 401) {
@@ -234,7 +233,10 @@
                     });
                 },
                 returnBack: function () {
-                    window.location.href = '/index.html';
+                    window.location.href = '/admin';
+                },
+                logout:function(){
+                    window.location.href = "/admin/logout";
                 }
             },
             mounted: function () {
