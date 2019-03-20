@@ -21,8 +21,10 @@ public class ItemController {
     }
 
     @RequestMapping("/list")
-    public ApiResult<List<Item>> list() {
-        return ApiResult.success(this.itemService.list(new ItemExample()));
+    public ApiResult<List<Item>> list(@RequestParam("cid") Long cid) {
+        ItemExample itemExample = new ItemExample();
+        itemExample.createCriteria().andCategoryIdEqualTo(cid);
+        return ApiResult.success(this.itemService.list(itemExample));
     }
 
     @RequestMapping("/save")

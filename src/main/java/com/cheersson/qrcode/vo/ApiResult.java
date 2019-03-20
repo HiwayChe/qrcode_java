@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class ApiResult<T> implements Serializable {
     private static final long serialVersionUID = 1L;
-    /**
-     * 0表示成功
-     */
+
     private int code = 0;
+    private boolean success = false;
     private String msg;
     private T data;
 
     public static <T> ApiResult<T> success(T data) {
         ApiResult<T> result = new ApiResult<>();
         result.setData(data);
+        result.setSuccess(true);
         return result;
     }
 
@@ -21,6 +21,7 @@ public class ApiResult<T> implements Serializable {
         ApiResult<T> result = new ApiResult<>();
         result.setCode(code);
         result.setMsg(msg);
+        result.setSuccess(false);
         return result;
     }
 
@@ -50,5 +51,13 @@ public class ApiResult<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

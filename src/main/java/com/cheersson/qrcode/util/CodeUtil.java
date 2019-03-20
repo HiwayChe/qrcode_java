@@ -22,6 +22,7 @@ public class CodeUtil {
     public static final String yearWeek = "yearWeek";
     public static final String customerItemCode = "customerItemCode";
     public static final String yearMonthDay = "yearMonthDay";
+    public static final String yearWeekSeq = "yearWeekSeq";
 
     public static List<String> split(String code) {
         List<String> resultList = new ArrayList<>();
@@ -60,9 +61,8 @@ public class CodeUtil {
     }
 
     /**
-     *
-     * @param code 扫描结果
-     * @param rule 验证规则
+     * @param code       扫描结果
+     * @param rule       验证规则
      * @param categoryId
      * @return
      */
@@ -86,7 +86,7 @@ public class CodeUtil {
             if (r.contains(leftPlaceholderSign) && r.contains(rightPlaceholderSign)) {
                 //占位符
                 placeholderMap.putAll(extractPlaceHolder(c, r));
-            }else{
+            } else {
                 throw new BizException("验证不通过，验证规则是{}", r);
             }
         }
@@ -94,6 +94,11 @@ public class CodeUtil {
         for (Map.Entry<String, String> entry : placeholderMap.entrySet()) {
             if (entry.getKey().equals(yearWeek)) {
                 validateYearWeek(placeholderMap.get(yearMonthDay), entry.getValue());
+            } else if (entry.getKey().equalsIgnoreCase(yearWeekSeq)) {
+                //前4位是年周，后几位是序列号
+                AssertUtil.isTrue(entry.getValue().length() > 4, "年周序列号{}长度要大于4", entry.getValue());
+                validateYearWeek(placeholderMap.get(yearMonthDay), entry.getValue().substring(0, 4));
+                validateSeq(entry.getValue().substring(4));
             } else if (entry.getKey().equals(customerItemCode)) {
                 //从数据库中查记录
                 String customerItemCode = entry.getValue();
@@ -115,15 +120,19 @@ public class CodeUtil {
         return true;
     }
 
+    private static void validateSeq(String seq) {
+        AssertUtil.isNumber(seq, "年周序列号{}要是数字", seq);
+    }
+
     private static Map<String, String> extractPlaceHolder(String c, String r) {
         int from = r.indexOf(leftPlaceholderSign);
         int to = r.lastIndexOf(rightPlaceholderSign);
 
-        if(from != 0){
+        if (from != 0) {
             AssertUtil.isEqual(c.substring(0, from), r.substring(0, from), "参数不匹配{} vs {}", c, r);
         }
-        if(to != r.length() - 1){
-            AssertUtil.isEqual(c.substring(r.length() - to), r.substring(to -1), "参数不匹配{} vs {}", c, r);
+        if (to != r.length() - 1) {
+            AssertUtil.isEqual(c.substring(r.length() - to), r.substring(to - 1), "参数不匹配{} vs {}", c, r);
         }
 
         Map<String, String> map = new HashMap<>();

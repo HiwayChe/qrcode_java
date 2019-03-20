@@ -119,6 +119,8 @@
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
                     <include>**/*.tld</include>
+                    <include>**/*.html</include>
+                    <include>**/*.txt</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
@@ -128,6 +130,8 @@
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
                     <include>**/*.tld</include>
+                    <include>**/*.html</include>
+                    <include>**/*.txt</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

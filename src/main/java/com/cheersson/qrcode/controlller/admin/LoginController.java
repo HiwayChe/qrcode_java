@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author cheguangai
  * @date 2019/3/17 0017
@@ -27,13 +29,20 @@ public class LoginController {
     private UserService<User, UserExample> userService;
 
     @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, @ModelAttribute Model model){
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password,  Model model){
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUsernameEqualTo(username);
         User user = this.userService.one(userExample);
         AssertUtil.notNull(user, "用户名或密码错误");
         AssertUtil.contentEquals(user.getPassword(), password, false, "用户名或密码错误");
-        WebUtil.getRequest().getSession().setAttribute("hasLoggedIn", true);
-        return "redirect:/admin/index";
+        WebUtil.getRequest().getSession(true).setAttribute("hasLoggedIn", true);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute("hasLoggedIn");
+        request.getSession().invalidate();
+        return "redirect:/admin/login";
     }
 }
