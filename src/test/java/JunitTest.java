@@ -25,7 +25,7 @@ public class JunitTest {
     public void test4() {
         String rule = "ab«RS»c«GS»{yearWeek}«RS»{yearMonthDay}«EOT»";
         String code = "ab«RS»c«GS»1912«RS»20190318«EOT»";
-        System.out.println(CodeUtil.validate(code, rule, 123L));
+        CodeUtil.validate(code, rule, 123L);
     }
 
     @Test

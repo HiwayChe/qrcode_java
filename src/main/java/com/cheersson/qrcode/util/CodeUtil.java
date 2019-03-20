@@ -66,7 +66,7 @@ public class CodeUtil {
      * @param categoryId
      * @return
      */
-    public static boolean validate(String code, String rule, Long categoryId) {
+    public static void validate(String code, String rule, Long categoryId) {
         List<String> codeSplit = split(code);
         List<String> ruleSplit = split(rule);
         if (codeSplit.size() != ruleSplit.size()) {
@@ -117,7 +117,6 @@ public class CodeUtil {
                 //throw new BizException("非法占位符:{}", entry.getKey());
             }
         }
-        return true;
     }
 
     private static void validateSeq(String seq) {
