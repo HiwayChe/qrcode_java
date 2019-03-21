@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ApiResult<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private int code = 0;
+    private int code = 200;
     private boolean success = false;
     private String msg;
     private T data;
@@ -26,7 +26,7 @@ public class ApiResult<T> implements Serializable {
     }
 
     public static <T> ApiResult<T> fail(String msg) {
-        return fail(-1, msg);
+        return fail(500, msg);
     }
 
     public int getCode() {

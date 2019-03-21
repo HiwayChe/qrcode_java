@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestControllerAdvice
 public class ControllerExceptionAdvice {
     private static final Logger logger = LoggerFactory.getLogger(ControllerExceptionAdvice.class);
@@ -19,7 +21,8 @@ public class ControllerExceptionAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResult<String> sysException(Throwable throwable, Model model) {
         logger.error(throwable.getMessage(), throwable);
-        return ApiResult.fail(-1, "系统发生错误，请联系管理员");
+
+        return ApiResult.fail(500, "系统发生错误，请联系管理员");
     }
 
     @ExceptionHandler({BizException.class})
@@ -30,11 +33,11 @@ public class ControllerExceptionAdvice {
         return ApiResult.fail(bizException.getMessage());
     }
 
-    @ExceptionHandler(LoginException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public String loginException(LoginException loginException, Model model){
-        logger.error(loginException.getMessage(), loginException);
-        return "redirect:/admin/login";
-        //response.sendRedirect("/admin/login");
-    }
+//    @ExceptionHandler(LoginException.class)
+//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+//    public String loginException(LoginException loginException, Model model){
+//        logger.error(loginException.getMessage(), loginException);
+//        return "redirect:/admin/login";
+//        //response.sendRedirect("/admin/login");
+//    }
 }

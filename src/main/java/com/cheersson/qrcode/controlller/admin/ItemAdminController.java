@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/item")
-public class ItemController {
+public class ItemAdminController {
     @Autowired
     private ItemService<Item, ItemExample> itemService;
 

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("/admin")
-public class LoginController {
+public class LoginAdminController {
     private final String LoggedInKey = "hasLoggedIn";
 
     @Autowired

@@ -10,14 +10,16 @@ import com.cheersson.qrcode.vo.CodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/validate")
-public class ValidateController {
+@RequestMapping("/mini")
+public class MiniController {
 
     @Autowired
     private CategoryService<Category, CategoryExample> categoryService;
 
-    @PostMapping("")
+    @PostMapping("/validate")
     public ApiResult<Boolean> validate(@RequestBody CodeVO codeVO) {
         Category category = this.categoryService.get(codeVO.getCategoryId());
         try{
@@ -26,5 +28,12 @@ public class ValidateController {
         }catch(BizException e){
             return ApiResult.fail(500, e.getMessage());
         }
+    }
+
+    @PostMapping("/category/list")
+    public ApiResult<List<Category>> listCategory(){
+        CategoryExample categoryExample = new CategoryExample();
+        List<Category> list = this.categoryService.list(categoryExample);
+        return ApiResult.success(list);
     }
 }
